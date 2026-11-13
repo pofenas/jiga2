@@ -1,0 +1,58 @@
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+*~
+
+# Archivos de entorno (¡Seguridad!)
+# NUNCA subas tu .env, contiene credenciales y claves
+.env
+
+# Dependencias de Composer
+/vendor/
+
+# Archivos temporales y de escritura de CodeIgniter 4
+# Ignora todo el contenido de writable, pero mantiene las carpetas
+/writable/cache/*
+!/writable/cache/index.html
+
+/writable/logs/*
+!/writable/logs/index.html
+
+/writable/session/*
+!/writable/session/index.html
+
+/writable/uploads/*
+!/writable/uploads/index.html
+
+/writable/debugbar/*
+!/writable/debugbar/index.html
+
+# Bases de datos SQLite locales
+/writable/**/*.db
+/writable/**/*.sqlite
+
+# Logs de errores de PHP
+php_errors.log
+
+# Archivos de pruebas
+/tests/coverage*
+/phpunit
+/phpunit.xml
+
+# Archivos de IDE y editores
+.idea/
+*.iml
+.vscode/
+/nbproject/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/nbactions.xml
+/nb-configuration.xml
+*.sublime-workspace
+*.sublime-project
+
+# Archivos de configuración local opcionales
+.php-version
+.php-cs-fixer.php

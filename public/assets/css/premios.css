@@ -1,0 +1,85 @@
+.adjudicacion
+    {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+    }
+
+.columnas
+    {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    }
+
+.columna
+    {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    }
+
+.tarjeta
+    {
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background: #fff;
+    transition: background .15s ease, border-color .15s ease, opacity .15s ease;
+    }
+
+.tarjeta strong
+    {
+    display: block;
+    }
+
+.tarjeta small
+    {
+    display: block;
+    color: #666;
+    margin-top: 4px;
+    }
+
+.tarjeta.activa
+    {
+    border-color: #0d6efd;
+    background: #eef5ff;
+    }
+
+.tarjeta.trabajo.seleccionada
+    {
+    border-color: #198754;
+    background: #eaf7ef;
+    }
+
+.tarjeta.trabajo.deshabilitada
+    {
+    opacity: .45;
+    pointer-events: none;
+    }
+
+.nota
+    {
+    margin-top: 8px;
+    font-weight: 600;
+    }
+
+.premiado-actual
+    {
+    margin-top: 8px;
+    font-size: .9rem;
+    color: #444;
+    }
+
+.texto-suave
+    {
+    color: #777;
+    }
+
+.error
+    {
+    color: #b02a37;
+    }

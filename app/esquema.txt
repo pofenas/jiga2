@@ -1,0 +1,716 @@
+--
+-- PostgreSQL database dump
+--
+
+\restrict POsUjz3hQ3ZWTRuENW1EUghDeIqZKN6YMpxflBDvwnBDbAjpmC8I75oKhREl04g
+
+-- Dumped from database version 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1)
+-- Dumped by pg_dump version 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: roles; Type: TABLE; Schema: public; Owner: software
+--
+
+CREATE TABLE public.roles (
+    id_rol integer NOT NULL,
+    nombre character varying(32) NOT NULL
+);
+
+
+ALTER TABLE public.roles OWNER TO software;
+
+--
+-- Name: Roles_id_rol_seq; Type: SEQUENCE; Schema: public; Owner: software
+--
+
+CREATE SEQUENCE public."Roles_id_rol_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Roles_id_rol_seq" OWNER TO software;
+
+--
+-- Name: Roles_id_rol_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: software
+--
+
+ALTER SEQUENCE public."Roles_id_rol_seq" OWNED BY public.roles.id_rol;
+
+
+--
+-- Name: calificaciones; Type: TABLE; Schema: public; Owner: software
+--
+
+CREATE TABLE public.calificaciones (
+    id_calificacion integer NOT NULL,
+    id_usuario integer NOT NULL,
+    id_item integer NOT NULL,
+    nota numeric,
+    id_trabajo integer NOT NULL
+);
+
+
+ALTER TABLE public.calificaciones OWNER TO software;
+
+--
+-- Name: calificaciones_id_calificacion_seq; Type: SEQUENCE; Schema: public; Owner: software
+--
+
+CREATE SEQUENCE public.calificaciones_id_calificacion_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.calificaciones_id_calificacion_seq OWNER TO software;
+
+--
+-- Name: calificaciones_id_calificacion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: software
+--
+
+ALTER SEQUENCE public.calificaciones_id_calificacion_seq OWNED BY public.calificaciones.id_calificacion;
+
+
+--
+-- Name: categorias; Type: TABLE; Schema: public; Owner: software
+--
+
+CREATE TABLE public.categorias (
+    id_categoria integer NOT NULL,
+    nombre character varying(32) NOT NULL,
+    id_evento integer NOT NULL
+);
+
+
+ALTER TABLE public.categorias OWNER TO software;
+
+--
+-- Name: categorias_id_categotia_seq; Type: SEQUENCE; Schema: public; Owner: software
+--
+
+CREATE SEQUENCE public.categorias_id_categotia_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.categorias_id_categotia_seq OWNER TO software;
+
+--
+-- Name: categorias_id_categotia_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: software
+--
+
+ALTER SEQUENCE public.categorias_id_categotia_seq OWNED BY public.categorias.id_categoria;
+
+
+--
+-- Name: eventos; Type: TABLE; Schema: public; Owner: software
+--
+
+CREATE TABLE public.eventos (
+    id_evento integer NOT NULL,
+    nombre character varying(128) NOT NULL,
+    certificados boolean DEFAULT false NOT NULL
+);
+
+
+ALTER TABLE public.eventos OWNER TO software;
+
+--
+-- Name: eventos_id_evento_seq; Type: SEQUENCE; Schema: public; Owner: software
+--
+
+CREATE SEQUENCE public.eventos_id_evento_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.eventos_id_evento_seq OWNER TO software;
+
+--
+-- Name: eventos_id_evento_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: software
+--
+
+ALTER SEQUENCE public.eventos_id_evento_seq OWNED BY public.eventos.id_evento;
+
+
+--
+-- Name: items; Type: TABLE; Schema: public; Owner: software
+--
+
+CREATE TABLE public.items (
+    id_item integer NOT NULL,
+    id_evento integer NOT NULL,
+    nombre character varying NOT NULL,
+    peso numeric NOT NULL
+);
+
+
+ALTER TABLE public.items OWNER TO software;
+
+--
+-- Name: items_id_item_seq; Type: SEQUENCE; Schema: public; Owner: software
+--
+
+CREATE SEQUENCE public.items_id_item_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.items_id_item_seq OWNER TO software;
+
+--
+-- Name: items_id_item_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: software
+--
+
+ALTER SEQUENCE public.items_id_item_seq OWNED BY public.items.id_item;
+
+
+--
+-- Name: plantillas; Type: TABLE; Schema: public; Owner: software
+--
+
+CREATE TABLE public.plantillas (
+    id_plantilla integer NOT NULL,
+    nombre character varying(64) NOT NULL,
+    archivo bytea,
+    id_evento integer NOT NULL,
+    filename character varying(128),
+    privada boolean DEFAULT false NOT NULL,
+    pos_x_titulo numeric DEFAULT 100,
+    pos_y_titulo numeric DEFAULT 300,
+    pos_x_autores numeric DEFAULT 100,
+    pos_y_autores numeric DEFAULT 400,
+    font_size integer DEFAULT 16
+);
+
+
+ALTER TABLE public.plantillas OWNER TO software;
+
+--
+-- Name: plantillas_id_plantilla_seq; Type: SEQUENCE; Schema: public; Owner: software
+--
+
+CREATE SEQUENCE public.plantillas_id_plantilla_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.plantillas_id_plantilla_seq OWNER TO software;
+
+--
+-- Name: plantillas_id_plantilla_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: software
+--
+
+ALTER SEQUENCE public.plantillas_id_plantilla_seq OWNED BY public.plantillas.id_plantilla;
+
+
+--
+-- Name: presentaciones; Type: TABLE; Schema: public; Owner: software
+--
+
+CREATE TABLE public.presentaciones (
+    id_presentacion integer NOT NULL,
+    id_evento integer NOT NULL,
+    nombre character varying(256) NOT NULL
+);
+
+
+ALTER TABLE public.presentaciones OWNER TO software;
+
+--
+-- Name: presentacion_id_presentacion_seq; Type: SEQUENCE; Schema: public; Owner: software
+--
+
+CREATE SEQUENCE public.presentacion_id_presentacion_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.presentacion_id_presentacion_seq OWNER TO software;
+
+--
+-- Name: presentacion_id_presentacion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: software
+--
+
+ALTER SEQUENCE public.presentacion_id_presentacion_seq OWNED BY public.presentaciones.id_presentacion;
+
+
+--
+-- Name: rel_presentaciones_trabajos; Type: TABLE; Schema: public; Owner: software
+--
+
+CREATE TABLE public.rel_presentaciones_trabajos (
+    id integer NOT NULL,
+    id_presentacion integer NOT NULL,
+    id_trabajo integer NOT NULL,
+    orden integer NOT NULL
+);
+
+
+ALTER TABLE public.rel_presentaciones_trabajos OWNER TO software;
+
+--
+-- Name: rel_presentaciones_trabajos_id_seq; Type: SEQUENCE; Schema: public; Owner: software
+--
+
+CREATE SEQUENCE public.rel_presentaciones_trabajos_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.rel_presentaciones_trabajos_id_seq OWNER TO software;
+
+--
+-- Name: rel_presentaciones_trabajos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: software
+--
+
+ALTER SEQUENCE public.rel_presentaciones_trabajos_id_seq OWNED BY public.rel_presentaciones_trabajos.id;
+
+
+--
+-- Name: rel_usuarios_roles; Type: TABLE; Schema: public; Owner: software
+--
+
+CREATE TABLE public.rel_usuarios_roles (
+    id integer NOT NULL,
+    id_usuario integer NOT NULL,
+    id_rol integer NOT NULL
+);
+
+
+ALTER TABLE public.rel_usuarios_roles OWNER TO software;
+
+--
+-- Name: rel_usuarios_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: software
+--
+
+CREATE SEQUENCE public.rel_usuarios_roles_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.rel_usuarios_roles_id_seq OWNER TO software;
+
+--
+-- Name: rel_usuarios_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: software
+--
+
+ALTER SEQUENCE public.rel_usuarios_roles_id_seq OWNED BY public.rel_usuarios_roles.id;
+
+
+--
+-- Name: trabajos; Type: TABLE; Schema: public; Owner: software
+--
+
+CREATE TABLE public.trabajos (
+    id_trabajo integer NOT NULL,
+    nombre character varying(128) NOT NULL,
+    pdf bytea NOT NULL,
+    id_usuario integer NOT NULL,
+    id_categoria integer NOT NULL,
+    lista_autores text NOT NULL,
+    filename character varying(255) NOT NULL,
+    admitido boolean DEFAULT true NOT NULL
+);
+
+
+ALTER TABLE public.trabajos OWNER TO software;
+
+--
+-- Name: trabajos_id_trabajo_seq; Type: SEQUENCE; Schema: public; Owner: software
+--
+
+CREATE SEQUENCE public.trabajos_id_trabajo_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.trabajos_id_trabajo_seq OWNER TO software;
+
+--
+-- Name: trabajos_id_trabajo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: software
+--
+
+ALTER SEQUENCE public.trabajos_id_trabajo_seq OWNED BY public.trabajos.id_trabajo;
+
+
+--
+-- Name: usuarios; Type: TABLE; Schema: public; Owner: software
+--
+
+CREATE TABLE public.usuarios (
+    id_usuario integer NOT NULL,
+    login character varying(256) NOT NULL,
+    password character varying(32) NOT NULL,
+    nombre character varying(128) NOT NULL,
+    id_evento integer,
+    validado boolean DEFAULT true NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    correo_verificado boolean DEFAULT true NOT NULL,
+    token_verificacion character varying(64),
+    reset_token character varying(64),
+    reset_token_expira timestamp without time zone
+);
+
+
+ALTER TABLE public.usuarios OWNER TO software;
+
+--
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: software
+--
+
+CREATE SEQUENCE public.usuarios_id_usuario_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.usuarios_id_usuario_seq OWNER TO software;
+
+--
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: software
+--
+
+ALTER SEQUENCE public.usuarios_id_usuario_seq OWNED BY public.usuarios.id_usuario;
+
+
+--
+-- Name: calificaciones id_calificacion; Type: DEFAULT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.calificaciones ALTER COLUMN id_calificacion SET DEFAULT nextval('public.calificaciones_id_calificacion_seq'::regclass);
+
+
+--
+-- Name: categorias id_categoria; Type: DEFAULT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.categorias ALTER COLUMN id_categoria SET DEFAULT nextval('public.categorias_id_categotia_seq'::regclass);
+
+
+--
+-- Name: eventos id_evento; Type: DEFAULT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.eventos ALTER COLUMN id_evento SET DEFAULT nextval('public.eventos_id_evento_seq'::regclass);
+
+
+--
+-- Name: items id_item; Type: DEFAULT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.items ALTER COLUMN id_item SET DEFAULT nextval('public.items_id_item_seq'::regclass);
+
+
+--
+-- Name: plantillas id_plantilla; Type: DEFAULT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.plantillas ALTER COLUMN id_plantilla SET DEFAULT nextval('public.plantillas_id_plantilla_seq'::regclass);
+
+
+--
+-- Name: presentaciones id_presentacion; Type: DEFAULT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.presentaciones ALTER COLUMN id_presentacion SET DEFAULT nextval('public.presentacion_id_presentacion_seq'::regclass);
+
+
+--
+-- Name: rel_presentaciones_trabajos id; Type: DEFAULT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.rel_presentaciones_trabajos ALTER COLUMN id SET DEFAULT nextval('public.rel_presentaciones_trabajos_id_seq'::regclass);
+
+
+--
+-- Name: rel_usuarios_roles id; Type: DEFAULT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.rel_usuarios_roles ALTER COLUMN id SET DEFAULT nextval('public.rel_usuarios_roles_id_seq'::regclass);
+
+
+--
+-- Name: roles id_rol; Type: DEFAULT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.roles ALTER COLUMN id_rol SET DEFAULT nextval('public."Roles_id_rol_seq"'::regclass);
+
+
+--
+-- Name: trabajos id_trabajo; Type: DEFAULT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.trabajos ALTER COLUMN id_trabajo SET DEFAULT nextval('public.trabajos_id_trabajo_seq'::regclass);
+
+
+--
+-- Name: usuarios id_usuario; Type: DEFAULT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.usuarios ALTER COLUMN id_usuario SET DEFAULT nextval('public.usuarios_id_usuario_seq'::regclass);
+
+
+--
+-- Name: roles Roles_pkey; Type: CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT "Roles_pkey" PRIMARY KEY (id_rol);
+
+
+--
+-- Name: calificaciones calificaciones_pkey; Type: CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.calificaciones
+    ADD CONSTRAINT calificaciones_pkey PRIMARY KEY (id_calificacion);
+
+
+--
+-- Name: categorias categorias_pkey; Type: CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.categorias
+    ADD CONSTRAINT categorias_pkey PRIMARY KEY (id_categoria);
+
+
+--
+-- Name: eventos eventos_pkey; Type: CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.eventos
+    ADD CONSTRAINT eventos_pkey PRIMARY KEY (id_evento);
+
+
+--
+-- Name: items items_pkey; Type: CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.items
+    ADD CONSTRAINT items_pkey PRIMARY KEY (id_item);
+
+
+--
+-- Name: plantillas plantillas_pkey; Type: CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.plantillas
+    ADD CONSTRAINT plantillas_pkey PRIMARY KEY (id_plantilla);
+
+
+--
+-- Name: presentaciones presentacion_pkey; Type: CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.presentaciones
+    ADD CONSTRAINT presentacion_pkey PRIMARY KEY (id_presentacion);
+
+
+--
+-- Name: rel_presentaciones_trabajos rel_presentaciones_trabajos_pkey; Type: CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.rel_presentaciones_trabajos
+    ADD CONSTRAINT rel_presentaciones_trabajos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: rel_usuarios_roles rel_usuarios_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.rel_usuarios_roles
+    ADD CONSTRAINT rel_usuarios_roles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: trabajos trabajos_pkey; Type: CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.trabajos
+    ADD CONSTRAINT trabajos_pkey PRIMARY KEY (id_trabajo);
+
+
+--
+-- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_pkey PRIMARY KEY (id_usuario);
+
+
+--
+-- Name: calificaciones calificaciones_id_item_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.calificaciones
+    ADD CONSTRAINT calificaciones_id_item_fkey FOREIGN KEY (id_item) REFERENCES public.items(id_item) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: calificaciones calificaciones_id_trabajo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.calificaciones
+    ADD CONSTRAINT calificaciones_id_trabajo_fkey FOREIGN KEY (id_trabajo) REFERENCES public.trabajos(id_trabajo) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: calificaciones calificaciones_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.calificaciones
+    ADD CONSTRAINT calificaciones_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: categorias categorias_id_evento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.categorias
+    ADD CONSTRAINT categorias_id_evento_fkey FOREIGN KEY (id_evento) REFERENCES public.eventos(id_evento) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: items items_id_evento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.items
+    ADD CONSTRAINT items_id_evento_fkey FOREIGN KEY (id_evento) REFERENCES public.eventos(id_evento);
+
+
+--
+-- Name: plantillas plantillas_id_evento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.plantillas
+    ADD CONSTRAINT plantillas_id_evento_fkey FOREIGN KEY (id_evento) REFERENCES public.eventos(id_evento) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: presentaciones presentacion_id_evento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.presentaciones
+    ADD CONSTRAINT presentacion_id_evento_fkey FOREIGN KEY (id_evento) REFERENCES public.eventos(id_evento) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: rel_presentaciones_trabajos rel_presentaciones_trabajos_id_presentacion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.rel_presentaciones_trabajos
+    ADD CONSTRAINT rel_presentaciones_trabajos_id_presentacion_fkey FOREIGN KEY (id_presentacion) REFERENCES public.presentaciones(id_presentacion) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: rel_presentaciones_trabajos rel_presentaciones_trabajos_id_trabajo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.rel_presentaciones_trabajos
+    ADD CONSTRAINT rel_presentaciones_trabajos_id_trabajo_fkey FOREIGN KEY (id_trabajo) REFERENCES public.trabajos(id_trabajo) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: rel_usuarios_roles rel_usuarios_roles_id_rol_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.rel_usuarios_roles
+    ADD CONSTRAINT rel_usuarios_roles_id_rol_fkey FOREIGN KEY (id_rol) REFERENCES public.roles(id_rol) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: rel_usuarios_roles rel_usuarios_roles_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.rel_usuarios_roles
+    ADD CONSTRAINT rel_usuarios_roles_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: trabajos trabajos_id_categoria_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.trabajos
+    ADD CONSTRAINT trabajos_id_categoria_fkey FOREIGN KEY (id_categoria) REFERENCES public.categorias(id_categoria);
+
+
+--
+-- Name: trabajos trabajos_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.trabajos
+    ADD CONSTRAINT trabajos_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: usuarios usuarios_id_evento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: software
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_id_evento_fkey FOREIGN KEY (id_evento) REFERENCES public.eventos(id_evento) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+\unrestrict POsUjz3hQ3ZWTRuENW1EUghDeIqZKN6YMpxflBDvwnBDbAjpmC8I75oKhREl04g
+
