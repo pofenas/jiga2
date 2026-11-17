@@ -9,6 +9,7 @@ class AppMenu extends BaseConfig
     public array $menu = [
         ['Inicio',      ''],
         ['Eventos',             'eventos/listar',   'Administrador'],
+        ['Enlaces Eventos',     'lista-eventos',    'Miembro Comité Organizador','Administrador','Miembro Comité Científico'],
         ['Roles',               'roles/listar',     'Administrador'],
         ['Usuarios',            'usuarios/listar',  'Miembro Comité Organizador'],
         ['Items',               'items/listar',     'Miembro Comité Organizador'],

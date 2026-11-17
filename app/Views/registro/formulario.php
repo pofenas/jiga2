@@ -31,6 +31,19 @@
             <label class="form-label">Contraseña</label>
             <input type="password" name="password" class="form-control" required>
         </div>
+        <div class="form-check mb-3">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                name="residente"
+                id="residentes"
+                value="1"
+            >
+
+            <label class="form-check-label" for="residente">
+                Soy residente
+            </label>
+        </div>
 
         <button type="submit" class="btn btn-primary w-100">Registrarme</button>
     </form>

@@ -28,6 +28,7 @@ class Registro extends \CodeIgniter\Controller
         $email     = trim($this->request->getPost('email'));
         $nombre    = trim($this->request->getPost('nombre'));
         $password  = $this->request->getPost('password');
+        $residente = $this->request->getPost('residente') ? true : false;
         $nombre_evento = '';
         
         // Verificar que el email no existe ya
@@ -39,15 +40,16 @@ class Registro extends \CodeIgniter\Controller
 
         $token = bin2hex(random_bytes(32));
 
-        $datos = (object) [
-            'login'               => $email,
-            'email'               => $email,
-            'nombre'              => $nombre,
-            'password'            => md5($password),
-            'id_evento'           => $id_evento ?: null,
-            'validado'            => false,
-            'correo_verificado'   => false,
-            'token_verificacion'  => $token,
+       $datos = (object) [
+            'login'              => $email,
+            'email'              => $email,
+            'nombre'             => $nombre,
+            'password'           => md5($password),
+            'id_evento'          => $id_evento ?: null,
+            'residente'         => $residente,
+            'validado'           => false,
+            'correo_verificado'  => false,
+            'token_verificacion' => $token,
         ];
 
         if ($model->crear($datos) === false)

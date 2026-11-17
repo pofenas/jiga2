@@ -17,6 +17,7 @@ class UsuariosModel extends CrudModel
                                     'token_verificacion',
                                     'reset_token',
                                     'reset_token_expira',
+                                    'residente',
                                 ];
 
 
