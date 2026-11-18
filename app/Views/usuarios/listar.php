@@ -124,6 +124,16 @@
                         <input type="password" name="password"
                                class="form-control" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            value="<?= esc($usuario->email ?? '') ?>"
+                        >
+                    </div>
                 </div>
                <?php if ($es_admin) : ?>
                     <div class="mb-3">
@@ -181,6 +191,16 @@
                         </label>
                         <input type="password" id="edit_password" name="password"
                             class="form-control" autocomplete="new-password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            value="<?= esc($usuario->email ?? '') ?>"
+                        >
                     </div>
                 </div>
                 <?php if ($es_admin) : ?>
